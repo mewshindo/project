@@ -5,6 +5,7 @@ export interface User {
   email: string;
   phone?: string;
   role: 'admin' | 'customer';
+  roleId?: string;
   createdAt: string;
 }
 
@@ -93,4 +94,33 @@ export interface Customer {
   orders: Order[];
   totalSpent: number;
   createdAt: string;
+}
+
+// Role Types
+export interface Role {
+  id: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  permissions: Permission[];
+}
+
+export interface Permission {
+  id: string;
+  name: string;
+  description: string;
+  resource: string;
+  action: string;
+  createdAt: string;
+}
+
+export interface RoleCreateInput {
+  name: string;
+  description: string;
+  permissions: string[];
+}
+
+export interface RoleUpdateInput extends RoleCreateInput {
+  id: string;
 }

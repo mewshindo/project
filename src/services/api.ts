@@ -8,7 +8,11 @@ import {
   ProductCreateInput,
   Review,
   Order,
-  Customer
+  Customer,
+  Role,
+  Permission,
+  RoleCreateInput,
+  RoleUpdateInput
 } from '../types';
 
 // Create axios instance with base config
@@ -128,6 +132,41 @@ export const customersAPI = {
   
   search: async (query: string): Promise<Customer[]> => {
     const response = await api.get<Customer[]>(`/customers/search?q=${query}`);
+    return response.data;
+  },
+};
+
+// Roles API
+export const rolesAPI = {
+  getAll: async (): Promise<Role[]> => {
+    const response = await api.get<Role[]>('/roles');
+    return response.data;
+  },
+
+  getById: async (id: string): Promise<Role> => {
+    const response = await api.get<Role>(`/roles/${id}`);
+    return response.data;
+  },
+
+  create: async (role: RoleCreateInput): Promise<Role> => {
+    const response = await api.post<Role>('/roles', role);
+    return response.data;
+  },
+
+  update: async (role: RoleUpdateInput): Promise<Role> => {
+    const response = await api.put<Role>(`/roles/${role.id}`, role);
+    return response.data;
+  },
+
+  delete: async (id: string): Promise<void> => {
+    await api.delete(`/roles/${id}`);
+  },
+};
+
+// Permissions API
+export const permissionsAPI = {
+  getAll: async (): Promise<Permission[]> => {
+    const response = await api.get<Permission[]>('/permissions');
     return response.data;
   },
 };

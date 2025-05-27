@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import AdminProducts from './AdminProducts';
 import AdminOrders from './AdminOrders';
 import AdminCustomers from './AdminCustomers';
+import AdminRoles from './AdminRoles';
 
-type TabType = 'orders' | 'customers' | 'products';
+type TabType = 'orders' | 'customers' | 'products' | 'roles';
 
 const AdminPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('orders');
@@ -46,12 +47,23 @@ const AdminPage: React.FC = () => {
           >
             Товары
           </button>
+          <button
+            className={`flex-1 py-4 px-6 text-center text-sm font-medium border-b-2 ${
+              activeTab === 'roles'
+                ? 'border-primary-500 text-primary-600 dark:text-primary-400'
+                : 'border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'
+            }`}
+            onClick={() => setActiveTab('roles')}
+          >
+            Роли
+          </button>
         </div>
 
         <div className="p-6">
           {activeTab === 'orders' && <AdminOrders />}
           {activeTab === 'customers' && <AdminCustomers />}
           {activeTab === 'products' && <AdminProducts />}
+          {activeTab === 'roles' && <AdminRoles />}
         </div>
       </div>
     </div>
