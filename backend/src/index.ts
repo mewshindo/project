@@ -6,6 +6,7 @@ import { productsRouter } from './routes/products.js';
 import { ordersRouter } from './routes/orders.js';
 import { reviewsRouter } from './routes/reviews.js';
 import { customersRouter } from './routes/customers.js';
+import { rolesRouter } from './routes/roles.js';
 import { errorHandler } from './middleware/error.js';
 import { authenticateToken } from './middleware/auth.js';
 
@@ -27,6 +28,7 @@ app.use('/api/products', productsRouter);
 app.use('/api/orders', authenticateToken, ordersRouter);
 app.use('/api/reviews', authenticateToken, reviewsRouter);
 app.use('/api/customers', authenticateToken, customersRouter);
+app.use('/api/roles', rolesRouter);
 
 // Error handling
 app.use(errorHandler);
